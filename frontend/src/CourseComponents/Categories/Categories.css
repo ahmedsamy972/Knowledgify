@@ -1,0 +1,19 @@
+.category-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    /* Space between category components */
+    background-color: #f9f9f9;
+    /* Light background for the page */
+}
+
+/* If you prefer a grid layout, especially for wider screens */
+@media (min-width: 768px) {
+    .category-page {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}

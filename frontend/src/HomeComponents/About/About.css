@@ -1,0 +1,21 @@
+.about-us {
+    padding: 40px 20px;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.about-us h2 {
+    font-size: 2em;
+}
+
+.about-us p {
+    font-size: 1.2em;
+}
+
+.about-us button {
+    padding: 10px 20px;
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    cursor: pointer;
+}

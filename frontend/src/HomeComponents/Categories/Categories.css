@@ -1,0 +1,11 @@
+.categories {
+    padding: 20px;
+    background-color: #fff;
+    margin-bottom: 50px;
+}
+
+.categories .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

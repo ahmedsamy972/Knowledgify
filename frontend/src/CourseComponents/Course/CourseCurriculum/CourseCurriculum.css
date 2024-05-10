@@ -1,0 +1,20 @@
+.course-curriculum {
+    background: #fff;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.course-curriculum h2 {
+    color: #333;
+}
+
+.modules {
+    margin-top: 10px;
+}
+
+.module {
+    padding: 10px;
+    border-top: 1px solid #eee;
+}

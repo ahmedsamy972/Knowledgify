@@ -1,0 +1,11 @@
+.course-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px;
+    padding: 20px;
+}
+
+/* Additional styles can be added here to customize the appearance further,
+   such as responsive design tweaks or color and font adjustments. */

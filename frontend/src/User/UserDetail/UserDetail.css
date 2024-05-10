@@ -1,0 +1,37 @@
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #ccc;
+    /* Placeholder for an avatar */
+}
+
+.user-info {
+    flex-grow: 1;
+}
+
+.user-info h2,
+.user-info p {
+    margin: 5px 0;
+}
+
+.user-actions button {
+    margin-right: 10px;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}

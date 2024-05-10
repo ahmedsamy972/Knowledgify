@@ -1,0 +1,10 @@
+.featured-courses {
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.featured-courses .course-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

@@ -1,0 +1,11 @@
+.category-card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 10px;
+    width: calc(33% - 20px);
+    text-align: center;
+}
+
+.category-card h3 {
+    margin: 10px 0;
+}

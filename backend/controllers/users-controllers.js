@@ -1,11 +1,12 @@
 const HttpError = require('../models/http-error');
 const User = require('../models/user');
-
+const Course = require('../models/course');
+const jwt = require("jsonwebtoken");
 
 const getUsers = async (req, res, next) => {
   let users;
   try {
-    users = await User.find({}, '-password'); 
+    users = await User.find({ ID: { $not: /^AD/ } }, '-password'); 
   } catch (err) {
     const error = new HttpError(
       'Fetching users failed, please try again later.',
@@ -35,15 +36,26 @@ const getUser = async (req, res, next) => {
   const userId = req.params.userId;
   let user;
   try {
-    user = await User.find({ ID: userId }, '-password');
+    user = await User.findOne({ ID: userId }, '-password');
+
+    const enrolledCourseIds = user.enrolledCourses;
+    const enrolledCourses = await Course.find({ ID: { $in: enrolledCourseIds } });
+    
+    const userWithEnrolledCourses = {
+      ...user.toObject({ getters: true, transform: (doc, ret) => { delete ret._id; } }),
+      enrolledCourses
+    };
+    user.enrolledCourses = enrolledCourses;
+    res.json({ user: userWithEnrolledCourses });
+
   } catch (err) {
+    console.log(err);
     const error = new HttpError(
       'Fetching user failed, please try again later.',
       500
     );
     return next(error);
   }
-  res.json({ user: user.toObject({ getters: true, transform: (doc, ret) => { delete ret._id; } })});
 };
 
 const signup = async (req, res, next) => {
@@ -52,7 +64,6 @@ const signup = async (req, res, next) => {
   let existingUser
   try {
     existingUser = await User.findOne({ email })
-    console.log("jjjjjj");
   } catch (err) {
     const error = new HttpError(
       'Signing up failed, please try again later.',
@@ -66,7 +77,6 @@ const signup = async (req, res, next) => {
 
   const username = email.split('@')[0];
   const ID = 'SD' + username;
-  console.log("jjjj==ooojj");
 
   const createdUser = new User({
     ID,
@@ -87,7 +97,25 @@ const signup = async (req, res, next) => {
     return next(error);
   }
 
-  res.status(201).json({ message: 'SignedUp' });
+  // Authentication using Tokens
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: createdUser.ID, email: createdUser.email },
+      'supersecret_dont_share',
+      { expiresIn: '1h' }
+    );
+  } catch (err) {
+    const error = new HttpError(
+      'Signing up failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({ userId: createdUser.ID, email: createdUser.email, token: token });
 };
 
 const login = async (req, res, next) => {
@@ -112,7 +140,28 @@ const login = async (req, res, next) => {
     return next(error);
   } 
 
-  res.json({ message: 'LoggedIn' });
+  let token;
+  try {
+    token = jwt.sign(
+      { userId: existingUser.ID, email: existingUser.email },
+      'supersecret_dont_share',
+      { expiresIn: '1h' }
+    );
+  } catch (err) {
+    const error = new HttpError(
+      'Logging in failed, please try again later.',
+      500
+    );
+    return next(error);
+  }
+
+  res
+    .status(201)
+    .json({
+      userId: existingUser.ID,
+      email: existingUser.email,
+      token: token
+    });
 };
 
 exports.getUsers = getUsers;

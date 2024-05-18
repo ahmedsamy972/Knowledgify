@@ -1,10 +1,11 @@
 import React from 'react';
 import "./CourseHeader.css";
 
-function CourseHeader({ title, description }) {
+function CourseHeader({ code, title, description }) {
     return (
         <div className="course-header">
-            <h1>{title}</h1>
+            <h1>{code}</h1>
+            <h2>{title}</h2>
             <p>{description}</p>
         </div>
     );

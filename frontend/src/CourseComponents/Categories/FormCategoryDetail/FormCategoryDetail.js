@@ -1,11 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import "./FormCategoryDetail.css";
+import { AuthContext } from '../../../Shared/Context/auth-context';
 
-function FormCategoryDetail({ onSubmit }) {
+function FormCategoryDetail() {
+    const auth = useContext(AuthContext);
+    const uId = auth.userId;
+    const navigate = useNavigate();
+
+    const [name, setName] = useState("");
     const [sections, setSections] = useState([]);
+    
+    const handleNameChange = (e) => {
+        setName(e.target.value);
+    };
 
     const addSection = () => {
-        setSections([...sections, { title: '', description: '', imageUrl: '' }]);
+        setSections([...sections, { title: '', description: ''}]);
     };
 
     const handleSectionChange = (index, e) => {
@@ -21,21 +32,41 @@ function FormCategoryDetail({ onSubmit }) {
         setSections(updatedSections);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onSubmit({ sections });
+
+        const formData = {
+            name,
+            fields: sections
+        };
+        const authorization = uId + " " + auth.token;
+        try {
+            const response = await fetch('http://localhost:5000/api/categories/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                    authorization
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch categories');
+            }
+            // const data = await response.json();
+            navigate(0);
+        } catch (error) {
+            console.error('Error fetching categories:', error.message);
+        }
     };
+
+  
 
     return (
         <form className="course-form" onSubmit={handleSubmit}>
-            <input type="text" name="title" placeholder="Enter course title" required />
-            <textarea name="description" placeholder="Enter course description" required></textarea>
-            <input type="text" name="instructor" placeholder="Enter instructor name" required />
+            <input type="text" name="name" placeholder="Enter Category Name" required value={name} onChange={handleNameChange}/>
 
-            {/* Add section button */}
             <button type="button" onClick={addSection}>Add Section</button>
-
-            {/* Section inputs */}
             {sections.map((section, index) => (
                 <Section
                     key={index}
@@ -46,7 +77,7 @@ function FormCategoryDetail({ onSubmit }) {
                 />
             ))}
 
-            <button type="submit">Submit</button>
+            <button type="submit">Create</button>
         </form>
     );
 }
@@ -69,14 +100,14 @@ function Section({ index, section, onChange, onRemove }) {
                 onChange={(e) => onChange(index, e)}
                 required
             ></textarea>
-            <input
+            {/* <input
                 type="text"
                 name="imageUrl"
                 value={section.imageUrl}
                 placeholder="Enter image URL"
                 onChange={(e) => onChange(index, e)}
                 required
-            />
+            /> */}
             <button type="button" onClick={() => onRemove(index)}>Remove Section</button>
         </div>
     );

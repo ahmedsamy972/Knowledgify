@@ -1,15 +1,21 @@
 import React from 'react';
 import "./CourseCurriculum.css";
+import { Link } from 'react-router-dom';
 
-function CourseCurriculum({ modules }) {
+function CourseCurriculum({ courseId, modules }) {
     return (
         <div className="course-curriculum">
-            <h2>Course Curriculum</h2>
+            <h1>Course Curriculum</h1>
             <div className="modules">
-                {modules.map(module => (
-                    <div key={module.id} className="module">
-                        <h3>{module.name}</h3>
-                        <p>{module.modulesCount} Modules</p>
+                {modules && modules.map(module => (
+                    <div key={module.ID} className="module">
+                        <h2>{module.num}</h2>
+
+                        <Link to={`/courses/${courseId}/sections/${module.ID}`}>
+                            <h3>{module.title}</h3>
+                        </Link>
+                        
+                        <p>{module.description} Modules</p>
                     </div>
                 ))}
             </div>

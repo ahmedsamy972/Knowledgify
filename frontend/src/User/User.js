@@ -1,34 +1,57 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+
 import UserDetail from './UserDetail/UserDetail';
 import EnrolledCourses from './EnrolledCourses/EnrolledCourses';
 import PointsSummary from './Points/PointsSummary';
 import EditField from './EditField/EditField';
 
+import { AuthContext } from '../Shared/Context/auth-context';
+
 import './User.css'; 
 
 function User() {
-    const user = {
-        name: 'Ahmed Samy',
-        role: 'Student',
-        description: 'Information about the user',
-        avatar: '/path-to-avatar.jpg'
-    };
+    const [user, setUser] = useState({});
 
-    const courses = [
-        { id: 1, title: 'Course Title 1', progress: '50%' },
-        { id: 2, title: 'Course Title 2', progress: '25%' }
-    ];
+    const navigate = useNavigate();
 
-    const points = {
-        total: 100,
-        available: 80
+    const { userId } = useParams();
+
+    const auth = useContext(AuthContext);
+    const uId = auth.userId;
+    const uToken = auth.token;
+
+    useEffect(() => {
+        fetchUser();
+    }, [user]);
+
+    const authorization = uId + " " + uToken;
+    const fetchUser = async () => {
+        try {
+            const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
+                method: "GET", 
+                headers: {
+                    authorization
+                }
+            });
+            if (!response.ok) {
+                throw new Error('Failed to fetch categories');
+            }
+            const data = await response.json();
+            if (data.message === "noUser"){
+                navigate("/NotFound");
+            }
+            setUser(data.user);
+        } catch (error) {
+            console.error('Error fetching categories:', error.message);
+        }
     };
 
     return (
         <div className="user-profile-page">
             <UserDetail user={user} />
-            <EnrolledCourses courses={courses} />
-            <PointsSummary points={points} />
+            <EnrolledCourses courses={user.enrolledCourses} />
+            {/* <PointsSummary points={points} /> */}
             <EditField />
         </div>
     );

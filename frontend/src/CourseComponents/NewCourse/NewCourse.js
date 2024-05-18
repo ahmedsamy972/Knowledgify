@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
+import CourseCard from '../CourseCard/CourseCard';
 import FormCourseDetail from "./FormCourseDetail/FormCourseDetail";
 import CourseSections from './CourseSections/CourseSections';
-import './NewCourse.css';  // Importing the main CSS file for App component styling.
+import './NewCourse.css';  
 
 function NewCourse() {
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        console.log("Course created!");
-    };
+    const [courseCreated, setCourseCreated] = useState(false);
+    const [course, setCourse] = useState({});
 
     return (
         <div className="new-course">
             <h1>Create Course</h1>
-            <FormCourseDetail onSubmit={handleSubmit} />
-            <CourseSections />
+            {
+                courseCreated && (<CourseCard course={course}/>)
+            }
+            
+            {
+                !courseCreated && (<FormCourseDetail setCourse={setCourse} setCourseCreated={setCourseCreated} />)
+            }
+
+            {
+                courseCreated && (<CourseSections courseId={course.ID} />)
+            }
+            
         </div>
     );
 }

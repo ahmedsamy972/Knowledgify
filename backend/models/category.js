@@ -11,7 +11,7 @@ const categorySchema = new Schema({
         description: { type: String, required: true },
         imgURL: { type: String, required: false }
     }],
-    courses: [{ type: Schema.Types.ObjectId, ref: 'Course', required: false }]
+    courses: [{ type: String, required: false }]
 });
 
 module.exports = mongoose.model('Category', categorySchema);

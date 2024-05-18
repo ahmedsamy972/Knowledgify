@@ -4,7 +4,8 @@ import './SectionInfo.css';
 function SectionInfo({ section }) {
     return (
         <div className="section-info">
-            <h2>{section.name}</h2>
+            <h1>{section.num}</h1>
+            <h2>{section.title}</h2>
             <p>{section.description}</p>
         </div>
     );

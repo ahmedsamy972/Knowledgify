@@ -9,7 +9,7 @@ const userSchema = new Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true, minlength: 6 },
     image: { type: String, required: false },
-    enrolledCourses: [{ type: Schema.Types.ObjectId, ref: 'Course', required: false }]
+    enrolledCourses: [{ type: String, required: false }]
 });
 
 module.exports = mongoose.model('User', userSchema);

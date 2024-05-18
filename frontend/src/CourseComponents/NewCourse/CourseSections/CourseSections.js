@@ -1,30 +1,37 @@
-import React from 'react';
-import './CourseSections.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 import SectionModal from './SectionModal/SectionModal';
+import './CourseSections.css';
 
-function CourseSections() {
-    const [showModal, setShowModal] = React.useState(false);
+function CourseSections({ courseId }) {
+    const [showModal, setShowModal] = useState(false);
 
-    const handleAddSection = () => {
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-    };
+    const [sections, setSections] = useState([]);
 
     return (
         <div className="course-sections">
-            <div className="section">
-                <p>Introduction</p>
-                <button>Edit</button>
-            </div>
-            <div className="section">
-                <p>Section 1</p>
-                <button>Edit</button>
-            </div>
-            <button className="add-section" onClick={handleAddSection}>Add Section</button>
-            {showModal && <SectionModal onClose={handleCloseModal} />}
+
+            {
+                sections && sections.map((section, index) => {
+                    return (
+                        <div className="section" key={index}>
+                            <p>{section.num}</p>
+
+                            <Link to={`/courses/${courseId}/sections/${section.ID}`}>
+                                <p>{section.title}</p>
+                            </Link>
+                            
+                            <p>{section.description}</p>
+                        </div>
+                    )
+                })
+            }
+            
+            <button className="add-section" onClick={() => { setShowModal(true); }}>Add Section</button>
+            
+            {showModal && <SectionModal onClose={() => { setShowModal(false); }} setSections={setSections} courseId={courseId} />}
+        
         </div>
     );
 }

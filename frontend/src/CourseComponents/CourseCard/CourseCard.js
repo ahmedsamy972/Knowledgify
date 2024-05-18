@@ -1,15 +1,20 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './CourseCard.css';
 
-function CourseCard({ course }) {
+function CourseCard({ course, categoryId }) {
     return (
         <div className="course-card">
-            <img src="/path-to-image.jpg" alt="Course Thumbnail" />
-            <h3>{course.title}</h3>
+            {/* <img src="/path-to-image.jpg" alt="Course Thumbnail" /> */}
+            <Link to={`/categories/${categoryId}/courses/${course.ID}`} className="link-no-underline">
+                <h3>{course.title}</h3>
+            </Link>
+            <p>{course.code}</p>
             <p>{course.instructor}</p>
-            <button onClick={() => alert('Enroll Now')}>Enroll Now</button>
         </div>
     );
 }
 
 export default CourseCard;
+

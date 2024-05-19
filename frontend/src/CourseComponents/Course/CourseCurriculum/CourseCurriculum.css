@@ -15,6 +15,12 @@
 }
 
 .module {
+    margin-top: 10px;
     padding: 10px;
     border-top: 1px solid #eee;
+}
+
+.link-no-underline {
+    text-decoration: none;
+    color: inherit;
 }

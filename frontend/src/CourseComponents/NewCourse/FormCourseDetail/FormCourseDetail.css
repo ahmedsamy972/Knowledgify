@@ -6,24 +6,35 @@
     background: #f0f0f0;
     border-radius: 8px;
     width: 50%;
-    height: 250px;
+    height: 450px;
 }
 
-.course-form input,
-.course-form textarea {
-    margin-bottom: 10px;
+.code, .title, .description, .file {
+    margin-bottom: 20px;
     padding: 8px;
     font-size: 16px;
     border: 2px solid #ccc;
     border-radius: 4px;
 }
-
-.course-form button {
+.course-form label{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+.create {
     padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 10px;
+    background-color: #5a5a5a;
+    color: #DDDDDD;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+.create:hover{
+    background-color: #DDDDDD;
+    color: #5a5a5a;
 }

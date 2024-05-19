@@ -52,7 +52,7 @@ function User() {
             <UserDetail user={user} />
             <EnrolledCourses courses={user.enrolledCourses} />
             {/* <PointsSummary points={points} /> */}
-            <EditField />
+            {/* <EditField /> */}
         </div>
     );
 }

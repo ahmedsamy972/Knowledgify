@@ -11,11 +11,12 @@ function CourseCurriculum({ courseId, modules }) {
                     <div key={module.ID} className="module">
                         <h2>{module.num}</h2>
 
-                        <Link to={`/courses/${courseId}/sections/${module.ID}`}>
+                        <Link to={`/courses/${courseId}/sections/${module.ID}`} className='link-no-underline'>
                             <h3>{module.title}</h3>
                         </Link>
                         
-                        <p>{module.description} Modules</p>
+                        <p>{module.description}</p>
+                        <hr></hr>
                     </div>
                 ))}
             </div>

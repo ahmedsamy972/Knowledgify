@@ -6,7 +6,9 @@ import './CourseCard.css';
 function CourseCard({ course, categoryId }) {
     return (
         <div className="course-card">
-            {/* <img src="/path-to-image.jpg" alt="Course Thumbnail" /> */}
+            <Link to={`/categories/${categoryId}/courses/${course.ID}`} className="link-no-underline">
+                <img src={course.coverImg} alt="Course Thumbnail" />
+            </Link>
             <Link to={`/categories/${categoryId}/courses/${course.ID}`} className="link-no-underline">
                 <h3>{course.title}</h3>
             </Link>

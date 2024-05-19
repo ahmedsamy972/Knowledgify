@@ -6,18 +6,26 @@
     justify-content: center;
 }
 
+.video-course-display h2{
+    display: block;
+    width: 100%;
+    margin-left: 0px;
+    cursor: pointer;
+}
+
+
 .video-container {
     border: 1px solid #ccc;
     padding: 10px;
     border-radius: 8px;
-    width: 300px;
+    width: 60%;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     background-color: #fff;
-    transition: transform 0.3s;
+    margin-top: 20px;
 }
 
 .video-container:hover {
-    transform: translateY(-5px);
+    cursor: pointer;
 }
 
 .video-container h3 {

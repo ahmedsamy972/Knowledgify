@@ -50,7 +50,7 @@ function Courses() {
         <>
             <CourseCategory category={category} />
             {
-                (uId && uId.substring(0, 2) !== "SD") && (<button onClick={navigateToCreateCourse}>Add Course</button>)
+                (uId && uId.substring(0, 2) !== "SD") && (<button className='addCourse' onClick={navigateToCreateCourse}>Add Course</button>)
             }
             
         </>

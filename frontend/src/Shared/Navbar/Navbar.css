@@ -1,17 +1,18 @@
 nav {
-    background-color: #f0f0f0;
+    background-color: #DDDDDD;
     padding: 10px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     margin-bottom: 2px;
+    margin-top: 0px;
 }
 
 .nav-links {
     list-style: none;
     padding: 0;
-    margin-left: 75%;
+    margin-left: 50%;
 }
 
 .nav-links li {
@@ -27,11 +28,28 @@ nav {
 
 .nav-toggle {
     display: none;
-    background-color: #007bff;
+    background-color: black;
     color: white;
     border: none;
     cursor: pointer;
     padding: 10px 20px;
+}
+
+.logout{
+    width: 70px;
+    height: 25px;
+    color: black;
+    background-color: white;
+    cursor: pointer;
+    font-weight: 600;
+}
+.logout:hover{
+    color: white;
+    background-color: black;
+}
+.link-no-underline {
+    text-decoration: none;
+    color: inherit;
 }
 
 @media (max-width: 768px) {

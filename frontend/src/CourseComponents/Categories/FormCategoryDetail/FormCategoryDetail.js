@@ -66,7 +66,9 @@ function FormCategoryDetail() {
         <form className="course-form" onSubmit={handleSubmit}>
             <input type="text" name="name" placeholder="Enter Category Name" required value={name} onChange={handleNameChange}/>
 
-            <button type="button" onClick={addSection}>Add Section</button>
+            <h2>Add Fields</h2>
+            
+            
             {sections.map((section, index) => (
                 <Section
                     key={index}
@@ -76,8 +78,9 @@ function FormCategoryDetail() {
                     onRemove={removeSection}
                 />
             ))}
+            <button className='plus' type="button" onClick={addSection}>+</button>
 
-            <button type="submit">Create</button>
+            <button className='create' type="submit">Create</button>
         </form>
     );
 }
@@ -108,7 +111,7 @@ function Section({ index, section, onChange, onRemove }) {
                 onChange={(e) => onChange(index, e)}
                 required
             /> */}
-            <button type="button" onClick={() => onRemove(index)}>Remove Section</button>
+            <button type="button" onClick={() => onRemove(index)}>-</button>
         </div>
     );
 }

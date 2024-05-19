@@ -10,6 +10,7 @@ function Categories() {
     const uId = auth.userId;
 
     const [categories, setCategories] = useState([]);
+    const [showForm, setShowForm] = useState(false);
 
     useEffect(() => {
         fetchCategories();
@@ -37,10 +38,15 @@ function Categories() {
                     <CourseCategory key={category.name} category={category} mode="three" />
                 ))}
             </div>
-            
+
             {
-                (uId && uId.substring(0, 2) !== "SD") && (<FormCategoryDetail />)
+                (uId && uId.substring(0, 2) !== "SD" && !showForm) && (<button className='createCat' onClick={() => { setShowForm(true) }}>Create Category</button>)
             }
+           
+            {
+                showForm && (<FormCategoryDetail />)
+            }
+          
         </>
         
     );

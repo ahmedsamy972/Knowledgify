@@ -23,7 +23,7 @@ function VideoUploadForm({ onSubmit, handleFileChange, vids, setVids }) {
 
     return (
         <form className="video-upload-form" onSubmit={onSubmit}>
-            <button type="button" onClick={addVideo}>Add Video</button>
+            
             {vids.map((vid, index) => (
                 <VideoTitle
                     key={index}
@@ -33,6 +33,8 @@ function VideoUploadForm({ onSubmit, handleFileChange, vids, setVids }) {
                     onRemove={removeVideo}
                 />
             ))}
+
+            <button className='addVid' type="button" onClick={addVideo}>+</button>
 
             {
                 (vids.length > 0) && (
@@ -51,14 +53,14 @@ function VideoUploadForm({ onSubmit, handleFileChange, vids, setVids }) {
                 )
             }
             
-            <button type="submit">Upload Video</button>
+            <button type="submit">Upload</button>
         </form>
     );
 }
 
 function VideoTitle({ index, vid, onChange, onRemove }) {
     return (
-        <div className="section-container">
+        <div className="field-container">
             <input
                 type="text"
                 name="vid"
@@ -68,7 +70,7 @@ function VideoTitle({ index, vid, onChange, onRemove }) {
                 required
             />
             
-            <button type="button" onClick={() => onRemove(index)}>Remove Video Title</button>
+            <button type="button" onClick={() => onRemove(index)}>-</button>
         </div>
     );
 }

@@ -97,78 +97,93 @@ function Auth() {
     }
 
     return (
-        <div className="form-container">
-            <form onSubmit={handleSubmit} className='form-container'>
-                {isSignupMode && (
+        <div className="container">
+            <div className="form-container">
+                <form onSubmit={handleSubmit}>
+                    {isSignupMode && (
+                        <div className="form-group">
+                            <label htmlFor="fullName">Full Name</label>
+                            <input
+                                type="text"
+                                id="fullName"
+                                placeholder="Enter your full name"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                                required
+                            />
+                        </div>
+                    )}
+
+                    {isSignupMode && (
+                        <div className="form-group">
+                            <label htmlFor="bio">Bio</label>
+                            <input
+                                type="text"
+                                id="bio"
+                                placeholder="Enter your Bio"
+                                value={bio}
+                                onChange={(e) => setBio(e.target.value)}
+                            />
+                        </div>
+                    )}
+
+                    {isSignupMode && (
+                        <div className="form-group">
+                            <label htmlFor="img">Profile Image</label>
+                            <input
+                                name="file"
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => { setProfileImg(e.target.files[0]) }}
+                                id="img"
+                                required
+                            />
+                        </div>
+                    )}
+
                     <div className="form-group">
-                        <label htmlFor="fullName">Full Name</label>
+                        <label htmlFor="email">Email</label>
                         <input
-                            type="text"
-                            id="fullName"
-                            placeholder="Enter your full name"
-                            value={fullName}
-                            onChange={(e) => setFullName(e.target.value)}
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             required
                         />
                     </div>
-                )}
 
-                {isSignupMode && (
                     <div className="form-group">
-                        <label htmlFor="bio">Bio</label>
+                        <label htmlFor="password">Password</label>
                         <input
-                            type="text"
-                            id="bio"
-                            placeholder="Enter your Bio"
-                            value={bio}
-                            onChange={(e) => setBio(e.target.value)}
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
                         />
                     </div>
-                )}
+                    <div className='button-group'>
+                        <div>
+                            <button className='btnSubmit' type="submit">{isSignupMode ? 'Sign Up' : 'Log In'}</button>
+                        </div>
 
-                {isSignupMode && (
-                    <div className="form-group">
-                        <label htmlFor="img">Profile Image</label>
-                        <input name="file" type="file" accept="image/*" onChange={(e) => { setProfileImg(e.target.files[0]) }} id="img" required />
-
+                        <div>
+                            <button className='btn' type="button" onClick={handleBtnSwitch}>
+                                {isSignupMode ? 'Already Have Account Log In instead' : 'Have No Account Sign Up instead'}
+                            </button>
+                        </div>
                     </div>
-                )}
-
-
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                    />
-                </div>
-
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        placeholder="Enter your password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                    />
-                </div>
-
-
-                <div className="button-group">
-                    <button type="submit">{isSignupMode ? 'Sign Up' : 'Log In'}</button>
-                </div>
-
-                <div>
-                    <button onClick={handleBtnSwitch}>{isSignupMode ? 'Already Have Account Log In intead' : 'Have No Account Sign Up instead'}</button>
-                </div>
-            </form>
+                    
+                </form>
+            </div>
+            <div className="image-container">
+                <img src={`${process.env.PUBLIC_URL}/images/courses.jpg`} alt="Side Image" />
+            </div>
+            
         </div>
+
     );
 }
 

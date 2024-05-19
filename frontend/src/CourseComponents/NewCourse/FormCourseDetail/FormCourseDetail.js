@@ -78,19 +78,21 @@ function FormCourseDetail({ setCourse, setCourseCreated }) {
     return (
         <form className="course-form" onSubmit={handleSubmit}>
             <input type="text" name="code" placeholder="Enter course code" required value={code}
-                onChange={(e) => {setCode(e.target.value)}}/>
+                onChange={(e) => { setCode(e.target.value) }} className='code'/>
 
             <input type="text" name="title" placeholder="Enter course title" required value={title} 
-                onChange={(e) => { setTitle(e.target.value) }}/>
+                onChange={(e) => { setTitle(e.target.value) }} className='title'/>
 
             <textarea name="description" placeholder="Enter course description" required value={description}
-                onChange={(e) => { setDescription(e.target.value) }} />
+                onChange={(e) => { setDescription(e.target.value) }} className='description' />
 
-            <input name="file" type="file" accept="image/*" onChange={(e) => { setCoverImg(e.target.files[0]) }} id="fileInput" required />
+
+            <label htmlFor='fileInput'>Cover Image</label>
+            <input name="file" type="file" accept="image/*" onChange={(e) => { setCoverImg(e.target.files[0]) }} id="fileInput" required className='file' />
 
             
 
-            <button type="submit">Create</button>
+            <button className='create' type="submit">Create</button>
         </form>
     );
 }

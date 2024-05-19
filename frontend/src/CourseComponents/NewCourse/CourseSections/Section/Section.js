@@ -104,19 +104,23 @@ function Section() {
 
     return (
         <div className="section-page">
-            <div>
+            <div className='courseInfo'>
                 <h1>{section.course.title}</h1>
                 <h2>{section.course.code}</h2>
                 <p>{section.course.description}</p>
             </div>
             
+            <div className='sectionInfo'>
+                <SectionInfo section={section} />
+            </div>
+            
+            <div className='vids'>
+                <VideoCourseDisplay videos={section.videos} />
+            </div>
 
-            <SectionInfo section={section} />
-
-            <VideoCourseDisplay videos={section.videos} />
 
             {
-                (uID.substring(0, 2) !== "SD") && (<button onClick={ () => {setIsVideoUpload(true)}}>upload</button>)
+                (uID && uID.substring(0, 2) !== "SD") && (<button className='upload' onClick={ () => {setIsVideoUpload(true)}}>upload</button>)
             }
             
             {

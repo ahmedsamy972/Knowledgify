@@ -3,4 +3,33 @@
     flex-direction: column;
     align-items: center;
     margin: 20px;
+    width: 100%;
+}
+
+.courseInfo{
+    width: 100%;
+}
+
+.sectionInfo {
+    width: 100%;
+}
+
+.upload {
+    padding: 10px 20px;
+    font-size: 22px;
+    font-weight: 600;
+    width: 10%;
+    margin-left: 40%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: #5a5a5a;
+    color: #DDDDDD;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.upload:hover {
+    background-color: #DDDDDD;
+    color: #5a5a5a;
 }

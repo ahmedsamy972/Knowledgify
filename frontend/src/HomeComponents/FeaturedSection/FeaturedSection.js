@@ -3,10 +3,9 @@ import CourseCard from '../../CourseComponents/CourseCard/CourseCard';
 import './FeaturedSection.css';
 
 function FeaturedCourses() {
-    // Example data - you might fetch this from an API
     const courses = [
-        { id: 1, title: "Introduction to Programming", instructor: "Jane Doe" },
-        { id: 2, title: "Advanced Business Management", instructor: "John Smith" }
+        { id: 1, title: "Introduction to Programming", instructor: "Jane Doe", coverImg: `${process.env.PUBLIC_URL}/images/course1.jpeg` },
+        { id: 2, title: "Advanced Business Management", instructor: "John Smith", coverImg: `${process.env.PUBLIC_URL}/images/course2.jpeg` }
     ];
 
     return (

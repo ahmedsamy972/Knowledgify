@@ -15,12 +15,8 @@
     margin: 10px 0;
 }
 
-.course-card button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
+.course-card p {
+    margin: 10px 0;
 }
 
 .link-no-underline {

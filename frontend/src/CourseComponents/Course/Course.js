@@ -7,7 +7,7 @@ import CourseCurriculum from './CourseCurriculum/CourseCurriculum';
 // import StudentReviews from './StudentReviews/StudentReviews';
 // import EnrollmentForm from './EnrollmentForm/EnrollmentForm';
 import { AuthContext } from '../../Shared/Context/auth-context';
-
+import "./Course.css"
 
 function CoursePage() {
     const auth = useContext(AuthContext);
@@ -67,7 +67,7 @@ function CoursePage() {
             <CourseHeader code={course.code } title={course.title} description={course.description} />
             <CourseCurriculum modules={course.sections} courseId={course.ID} />
             {
-                (uID && !enrolled) && (< button onClick={enroll}>Enroll</button>)
+                (uID && !enrolled) && (<button className='enroll' onClick={enroll}>Enroll</button>)
             }
         </div>
     );

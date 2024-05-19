@@ -28,6 +28,10 @@ function Navbar() {
             <button className="nav-toggle" onClick={toggleNav}>
                 Menu
             </button>
+            <Link to="/" className='link-no-underline'>
+                <h1>KNOWLEDGIFY</h1>
+            </Link>
+            
             <ul className={isOpen ? 'nav-links open' : 'nav-links'}>
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/categories">Courses</Link></li>
@@ -45,7 +49,7 @@ function Navbar() {
                 }
                 
                 {
-                    isLoggedIn && (<button onClick={handleLogout}>Logout</button>)
+                    isLoggedIn && (<button className='logout' onClick={handleLogout}>Logout</button>)
                 } 
             </ul>
         </nav>

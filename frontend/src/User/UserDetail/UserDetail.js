@@ -10,10 +10,10 @@ function UserDetail({ user }) {
                 <p>{user.bio}</p>
                 <p>{user.email}</p>
             </div>
-            <div className="user-actions">
+            {/* <div className="user-actions">
                 <button onClick={() => alert('Change Password')}>Change Password</button>
                 <button onClick={() => alert('Edit Profile')}>Edit Profile</button>
-            </div>
+            </div> */}
         </div>
     );
 }

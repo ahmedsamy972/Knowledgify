@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import CourseCard from "../CourseCard/CourseCard"
 
 import './CourseCategory.css';  
@@ -12,7 +12,10 @@ function CourseCategory({ category, mode }) {
     
     return (
         <div className="category-container">
-            <h2>{category.name}</h2>
+            <Link className='link-no-underline' to={`/categories/${category.ID}`}>
+                <h2>{category.name}</h2>
+            </Link>
+            
             {
                 category.fields && category.fields.map((field, index) => {
                     return (<>
@@ -27,7 +30,10 @@ function CourseCategory({ category, mode }) {
                 ))}
             </div>
             {
-                mode === "three" && (<button onClick={navigateToCategory} className="show-more-btn">Show More</button>)
+                mode === "three" && (
+                    <div className="button-container">
+                        <button onClick={navigateToCategory} className="show-more-btn">Show More{" >>>"}</button>
+                    </div>)
             }
             
         </div>
